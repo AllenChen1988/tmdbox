@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glsct.api.repository.mapper.UserMapper">
+    <sql id="userDetailColumns">id, user_name,photo, nick_name, sex, brithday,address </sql>
+    <sql id="userSimpleColumns">id,nick_name,photo </sql>
+    <sql id="fullUserInfoNoId"> user_name, photo, s_photo, passwd, nick_name, sex, brithday, address, status, create_time</sql>
+    <sql id="fullUserInfo">id, user_name, photo, s_photo, passwd, nick_name, sex, brithday, address, status, create_time</sql>
+    <sql id="fullThirdUserInfo">id, user_id, tpuid, type, create_time</sql>
+    <sql id="fullThirdUserInfoNoid">user_id , tpuid, type, create_time</sql>
+
+    <select id="findUserByUserNameAndPasswd" parameterType="java.util.Map" resultType="hashmap">
+        select
+        <include refid="userDetailColumns"/>
+        from tmd_user where user_name = #{user_name} and passwd = #{passwd} and status = 0
+    </select>
+
+    <select id="findUserByThirdPartUUId" parameterType="java.util.Map" resultType="hashmap">
+        select <include refid="userDetailColumns"/> from tmd_user
+              where  status = 0 and
+              id = (select user_id from tmd_third_user where tpuid = #{tpuid} and type = #{type})
+    </select>
+
+    <insert id="registerUser" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into tmd_user (<include refid="fullUserInfoNoId"/>)  VALUES (#{user_name},#{photo},#{s_photo},#{passwd},#{nick_name},#{sex},#{brithday},#{address},#{status},#{create_time} )
+        <selectKey resultType="int" order="AFTER" keyProperty="returnedId">
+            SELECT LAST_INSERT_ID() as returnedId
+        </selectKey>
+    </insert>
+
+    <insert id="registerThirdPartUser" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into tmd_third_user
+        (<include refid="fullThirdUserInfoNoid"/>)
+        VALUES (#{user_id},#{tpuid},#{type},#{create_time})
+        <selectKey resultType="int" order="AFTER" keyProperty="returnedId">
+            SELECT LAST_INSERT_ID() as returnedId
+        </selectKey>
+    </insert>
+
+    <update id="modifyUserInfo" parameterType="java.util.Map" >
+        update tmd_user
+        <set>
+          <if test="user_name != null">user_name=#{user_name},</if>
+          <if test="photo != null">photo=#{photo},</if>
+          <if test="s_photo != null">s_photo=#{s_photo},</if>
+          <if test="passwd != null">passwd=#{passwd},</if>
+          <if test="nick_name != null">nick_name=#{nick_name},</if>
+          <if test="sex != null">sex=#{sex},</if>
+          <if test="brithday != null">brithday=#{brithday},</if>
+          <if test="address != null">address=#{address},</if>
+          <if test="status != null">status=#{status},</if>
+          <if test="create_time != null">create_time=#{create_time}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>

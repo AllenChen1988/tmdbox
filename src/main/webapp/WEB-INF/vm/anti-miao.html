@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    #set($contextPath=$!request.getContextPath())
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="$!contextPath/res/js/jquery-1.11.2.min.js"></script>
+    <script src="$!contextPath/res/js/jquery.md5.js"></script>
+    <link rel="stylesheet" media="screen" href="$!contextPath/res/css/miao.css"/>
+    <script>
+        $(document).ready(function () {
+            $(".tab").click(function () {
+                var tab = $(this).attr('id');
+                if (tab == "ss") {
+                    $("#ss").removeClass('select');
+                    $("#ac").removeClass('select');
+                    $("#ssbox").show();
+                    $("#acbox").hide();
+                    $("#ss").addClass('select');
+                } else if (tab == "ac") {
+                    $("#ac").removeClass('select');
+                    $("#ss").removeClass('select');
+                    $("#ssbox").hide();
+                    $("#acbox").show();
+                    $("#ac").addClass('select');
+                } else {
+
+                }
+            })
+            $(".btn").click(function () {
+                var urldic = {login: "$!contextPath/Login", btnss: "$!contextPath/ShadowSocks", btnac: "$!contextPath/AnyConnect"};
+                var btn = $(this).attr("id");
+                var d = {};
+                var ele = $("#" + btn).prevAll();
+                for (var i = 0; i < ele.length; i++) {
+                    var v = $(ele[i]).val();
+                    if (v) {
+                        d[$(ele[i]).attr('name')] = v;
+                    } else {
+                        return;
+                    }
+                }
+                console.log(d);
+                $.ajax({
+                    type: 'POST',
+                    url: urldic[btn],
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(d),
+                    success: function (cb) {
+                        console.log(urldic[btn])
+                        console.log(d)
+                    },
+                    error: function () {
+                        console.log(urldic[btn])
+                        console.log(d)
+                    }
+                });
+
+                if (btn == "login") {
+                    $("#sub").hide();
+                    $("#res").show();
+                    $("#ss").addClass('select');
+                    $("#ssbox").show();
+                    $("#acbox").hide();
+                } else if (btn == "btnss") {
+
+                } else if (btn == "btnac") {
+
+                }
+
+            })
+        })
+    </script>
+
+</head>
+<body class="miao">
+<div class="container">
+    <div id="sub">
+        <input placeholder="Password" label="false" type="password" name="pass" value="">
+        <input class="btn" type="button" value="Submit" id="login"/>
+    </div>
+
+    <div id="res" style="display: none">
+        <div id="tabbox">
+            <a href="#" id="ss" class="tab ss">ShadowSocks</a>
+            <a href="#" id="ac" class="tab ac">AnyConnect</a>
+        </div>
+        <div id="panel">
+            <div id="ssbox">
+                <input type="text" name="nickname" placeholder="NickName"/>
+                <input type="button"  class="btn" value="Submit" id="btnss"/>
+            </div>
+            <div id="acbox">
+                <input placeholder="UserName" name="username" type="text"/>
+                <input placeholder="Password" name="pass" type="password"/>
+                <input type="button" class="btn" value="Submit" id="btnac"/>
+            </div>
+        </div>
+    </div>
+    <p><a href="https://twitter.com/yuefou">Contact Me</a></p>
+
+</div>
+</body>
+</html>

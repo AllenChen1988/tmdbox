@@ -1,0 +1,229 @@
+body {
+    display: block;
+    margin: 0;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 140%;
+}
+
+body, html {
+    height: 100%;
+}
+
+form {
+    display: block;
+}
+
+.miao .container {
+    margin: 0 auto;
+    width: 400px;
+    padding: 40px;
+    border-radius: 3px;
+    background: white;
+    padding-bottom: 30px;
+}
+
+@media screen and (max-width: 550px) {
+    .miao .logo {
+        height: 65px;
+        padding-top: 30px
+    }
+
+    .miao p.oauth {
+        margin: 15px 0 25px;
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 600
+    }
+
+    .miao .container {
+        width: 100%;
+        border-radius: 0;
+        padding: 40px 20px;
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .miao br.only-mobile {
+        display: inline
+    }
+}
+
+.miao * {
+    box-sizing: border-box;
+}
+
+.miao {
+    background: #2089cf;
+    font-family: "proxima-nova";
+    padding: 0;
+}
+
+input, textarea, keygen, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+
+input, textarea, keygen, select, button {
+    font: normal normal normal 13.3333330154419px/normal Arial;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+}
+
+input, input[type="password"], input[type="search"] {
+    -webkit-appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+}
+
+input:not([type]), input[type="email" ], input[type="number" ], input[type="password" ], input[type="tel" ], input[type="url" ], input[type="text" ] {
+    padding: 1px 0px;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+button, input {
+    line-height: normal;
+}
+
+input, input[type="button" ], select, textarea {
+    outline: none;
+}
+
+.miao .container input[type='text'], .miao .container input[type='password'], .miao .container input[type='number'], .miao .container input[type='submit'], .miao .container input[type='button'] {
+    background: #fcfcfc;
+    border: 2px solid #e7e7e7;
+    margin: 20px auto;
+    padding: 15px;
+    width: 100%;
+    display: block;
+    border-radius: 3px;
+    font-size: 18px;
+    transition: opacity 0.4s;
+    text-align: left;
+}
+
+input[type="button" ], input[type="submit" ], input[type="reset" ] {
+    -webkit-appearance: push-button;
+    -webkit-user-select: none;
+    white-space: pre;
+}
+
+input[type="button" ], input[type="submit" ], input[type="reset" ], input[type="file" ]::-webkit-file-upload-button, button {
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    padding: 2px 6px 3px;
+    border: 2px outset buttonface;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-repeat: initial;
+    background-color: buttonface;
+    box-sizing: border-box;
+}
+
+.miao .container input[type="button" ] {
+    color: white;
+    background: #82C872;
+    border: 0;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.miao .container p {
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+    margin-top: 10px;
+    color: #999;
+}
+
+.miao .container p a {
+    text-decoration: none;
+    border-bottom: 1px solid #999;
+}
+
+.miao a, .miao a:visited {
+    text-decoration: underline;
+    color: inherit;
+}
+
+#tabbox {
+    height: 40px
+
+}
+
+#tabbox a{
+    background: #82C872;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+    margin-top: 10px;
+    color: #FFF;
+    margin-right: 2px
+
+}
+
+/*#panel {*/
+    /*background-color: #FFF;*/
+    /*height: 300px;*/
+    /*padding: 2px 6px 3px;*/
+/*}*/
+
+.tab {
+    background: #999;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    width: 100px;
+    float: left;
+    font-weight: bold;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius: 4px 4px 0px 0px;
+}
+
+a {
+    color: #000;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.signup {
+    margin-right: 8px;
+}
+
+.select {
+    background-color: #bcbac8 !important;
+}
+
+#ssbox {
+    padding: 1px;
+}
+
+#acbox {
+    min-height: 200px;
+    padding: 1px;
+    display: none;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.glsct.api.repository.mapper.PostsMapper">
+    <sql id="postSimpleColumn">type,content,user_id,create_time</sql>
+    <sql id="postMediaSimpleColumn"> post_id,media_url,order_no,create_time </sql>
+
+    <insert id="postPublish" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert  into tmd_post (<include refid="postSimpleColumn"/>) values (#{type},#{content},#{user_id},#{create_time})
+        <selectKey resultType="int" keyProperty="returnedId" order="AFTER">
+            SELECT LAST_INSERT_ID() as returnedId
+        </selectKey>
+    </insert>
+
+    <insert id="postMediaPublish" parameterType="java.util.Map" useGeneratedKeys="true" keyProperty="id">
+        insert into tmd_post_media (<include refid="postMediaSimpleColumn" />) VALUES (#{post_id},#{media_url},#{order_no},#{create_time})
+        <selectKey resultType="int" keyProperty="returnedId" order="AFTER">
+            SELECT LAST_INSERT_ID() as returnedId
+        </selectKey>
+    </insert>
+
+</mapper>
